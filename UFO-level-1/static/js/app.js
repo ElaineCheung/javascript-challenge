@@ -1,9 +1,8 @@
 var display_data = data;
 
-// writes a message to the console
 console.log(display_data);
 
-// clear previous return
+// clear data
 
 const newButton = document.createElement("button");
 const panelBody = document.getElementsByClassName("panel-body")[0];
@@ -15,16 +14,13 @@ panelBody.appendChild(newButton);
 console.log(newButton);
 
 
-// select the tbody in html code
+
 var tbody = d3.select("tbody");
-// select the buttons from html code
 var filter_button = d3.select("#filter-btn");
 var clear_button = d3.select("#clear-btn");
-// Select the input element
-var filter_bar_0 = d3.select("#datetime");
+var filter_bar = d3.select("#datetime");
 
 
-// data display function
 
 table(display_data);
 
@@ -38,7 +34,7 @@ function table() {
 };
 
 
-// Create html events, js reactions
+// Create html events for filter and clear buttons
 
 filter_button.on("click", select_data);
 clear_button.on("click", clear_all);
@@ -46,15 +42,14 @@ clear_button.on("click", clear_all);
 function select_data() {
 
     // Get the value of the input element
-    var input0 = filter_bar_0.property("value");
-    console.log(input0)
+    var input = filter_bar.property("value");
+    console.log(input)
 
     var filtered = display_data;
 
-    // Define conditions for filtered
 
-    if (input0) {
-        filtered = filtered.filter(data => data.datetime === input0);
+    if (input) {
+        filtered = filtered.filter(data => data.datetime === input);
     }
 
     if (filtered != display_data) {
@@ -78,7 +73,7 @@ function select_data() {
 
 function clear_all() {
 
-    // Clear the input element
+
     document.getElementById("datetime").value = "";
 
     // clear the table
